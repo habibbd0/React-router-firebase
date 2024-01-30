@@ -12,6 +12,7 @@ import App from "./App.jsx";
 import About from "./pages/About.jsx";
 import Service from "./pages/Service.jsx";
 import Login from "./pages/Login.jsx";
+import Register from "./pages/Register.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
       {
         path: '/login',
         element: <Login></Login>
+      }, 
+      {
+        path : '/register',
+        element : <Register></Register>
       }
     ]
   },

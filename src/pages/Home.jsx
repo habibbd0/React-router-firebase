@@ -1,4 +1,4 @@
-import HomeImage from "../image/Habib3.png"
+import HomeImage from '../image/Habib2.png'
 
 const Home = () => {
 	return (
