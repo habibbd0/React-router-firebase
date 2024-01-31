@@ -5,7 +5,6 @@ import { FaGoogle } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
 import { FaGithub } from "react-icons/fa";
 import { Link } from "react-router-dom";
-
 const Login = () => {
   const auth = getAuth(app);
   const provider = new GoogleAuthProvider();
@@ -18,6 +17,7 @@ const Login = () => {
         console.log(error.message);
       });
   };
+
 
   return (
     <div className="max-w-4xl text-center mx-auto border border-violet-500 p-8 mt-10">
@@ -38,6 +38,7 @@ const Login = () => {
                   placeholder="email"
                   className="input input-bordered"
                   required
+                
                 />
               </div>
               <div className="form-control">
@@ -47,8 +48,9 @@ const Login = () => {
                 <input
                   type="password"
                   placeholder="password"
-                  className="input input-bordered"
+                  className="input input-bordered w-[100%]"
                   required
+                  
                 />
                 <label className="label">
                   <a href="#" className="label-text-alt link link-hover">
@@ -66,16 +68,16 @@ const Login = () => {
             </form>
             
             <div className=" text-center w-56 mx-auto ">
-                <div onClick={HandleGoogleLogin} className="border border-slate-800 flex justify-between p-2 rounded-full w-full">
+                <div onClick={HandleGoogleLogin} className="border border-slate-800 flex justify-around p-2 rounded-full w-full">
                 <span className="text-violet-700 text-2xl"><FaGoogle /></span>
                 <h1>Sign up with Google</h1>
                 </div>
               
-                <div className="border border-slate-800 flex justify-between p-2 rounded-full mt-2 w-full">
+                <div className="border border-slate-800 flex justify-around p-2 rounded-full mt-2 w-full">
                 <span className="text-violet-700 text-2xl"><FaGithub /></span>
                 <h1>Sign up with Github</h1>
                 </div>
-                <div className="border border-slate-800 flex justify-between p-2 rounded-full mt-2 mb-2 w-full">
+                <div className="border border-slate-800 flex justify-around p-2 rounded-full mt-2 mb-2 w-full">
                 <span className="text-violet-700 text-2xl"> <MdOutlineEmail /> </span>
                 <h1>Sign up with Email</h1>
                 </div>
@@ -87,5 +89,4 @@ const Login = () => {
     </div>
   );
 };
-
 export default Login;
