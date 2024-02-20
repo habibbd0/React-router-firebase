@@ -6,7 +6,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorElement from "./pages/ErrorElement.jsx";
 
 import Home from "./pages/Home.jsx";
-import Blog from "./pages/Blog.jsx";
 import Root from "./Root/Root.jsx";
 import App from "./App.jsx";
 import About from "./pages/About.jsx";
@@ -15,6 +14,7 @@ import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import Authprovider from "./components/Authprovider/Authprovider.jsx";
 import UserProfile from "./pages/UserProfile.jsx";
+import Blog from "./pages/Blog.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -30,8 +30,8 @@ const router = createBrowserRouter([
         element: <Home></Home>
       },
       {
-        path: '/login',
-        element: <Login></Login>
+        path: '/blog',
+        element:<Blog></Blog>
       },
       {
         path: '/about',
@@ -41,10 +41,10 @@ const router = createBrowserRouter([
         path: '/service',
         element: <Service></Service>
       },
-      // {
-      //   path: '/login',
-        // element: <Login></Login>
-      // }, 
+      {
+        path: '/login',
+        element: <Login></Login>
+      }, 
       {
         path : '/register',
         element : <Register></Register>

@@ -5,7 +5,16 @@ import { AuthContext } from "../components/Authprovider/Authprovider";
 const Navbar = () => {
   // javascript lekhar jaiga
 
-  const { user } = useContext(AuthContext);
+  const { user,logOUtUser } = useContext(AuthContext);
+
+  const HandleLogOut = () => {
+    console.log('logout');
+    logOUtUser()
+    .then(() => {
+      console.log("seccessful logout");
+    }).catch(error => console.error(error.message))
+    
+  }
   // navLinks.json file er kaj
 // const [nav,setnav] = useState([])
 
@@ -47,7 +56,7 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          to="/login"
+          to="/blog"
           className={({ isActive, isPending }) =>
             isPending
               ? "pending"
@@ -111,19 +120,8 @@ const Navbar = () => {
         </div>
 
         <div className="navbar navbar-end pr-16">
-          {/* <li>
-        <NavLink
-          to="/login"
-          className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "active" : ""
-          }
-        >
-          <button className="btn btn-success w-20 text-white ">Login</button>
-        </NavLink>
-      </li> */}
-
-          {/* profile  */}
-          <div className="dropdown dropdown-end">
+          {
+            user ? <div className="dropdown dropdown-end">
             <div
               tabIndex={0}
               role="button"
@@ -152,10 +150,20 @@ const Navbar = () => {
                 <a>Settings</a>
               </li>
               <li>
-                <a>Logout</a>
+                <a onClick={HandleLogOut}>Logout</a>
               </li>
             </ul>
-          </div>
+          </div> :  <li>
+        <NavLink
+          to="/login"
+          className={({ isActive, isPending }) =>
+            isPending ? "pending" : isActive ? "active" : ""
+          }
+        >
+          <button className="btn btn-success w-20 text-white ">Login</button>
+        </NavLink>
+      </li>
+          }
         </div>
       </div>
     </div>
