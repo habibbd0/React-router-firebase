@@ -1,18 +1,21 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate,  } from "react-router-dom";
 import { AuthContext } from "../components/Authprovider/Authprovider";
 
 const Navbar = () => {
   // javascript lekhar jaiga
 
-  const { user,logOUtUser } = useContext(AuthContext);
+  const { user,logOutUser } = useContext(AuthContext);
+  const navigate = useNavigate()
 
   const HandleLogOut = () => {
-    console.log('logout');
-    logOUtUser()
+    // console.log('logout');
+    logOutUser()
     .then(() => {
       console.log("seccessful logout");
-    }).catch(error => console.error(error.message))
+      navigate("/login")
+    })
+    .catch(error => console.error(error.message))
     
   }
   // navLinks.json file er kaj
@@ -155,7 +158,7 @@ const Navbar = () => {
             </ul>
           </div> :  <li>
         <NavLink
-          to="/login"
+          to="/Login"
           className={({ isActive, isPending }) =>
             isPending ? "pending" : isActive ? "active" : ""
           }
