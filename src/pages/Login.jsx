@@ -20,8 +20,8 @@ const Login = () => {
 
 
   return (
-    <div className="max-w-4xl text-center mx-auto border border-violet-500 p-8 mt-10">
-      <h1 className="text-violet-700 text-2xl font-semibold underline ">Login</h1>
+    <div className="max-w-4xl text-center mx-auto border border-violet-500 p-8 my-12">
+      <h1 className="text-violet-700 text-2xl font-semibold underline">Login</h1>
       <div className="hero">
         <div className="hero-content flex gap-10 lg:flex-row-reverse">
           <div className="text-center w-full max-w-xl mx-auto lg:text-left">
@@ -62,7 +62,7 @@ const Login = () => {
                 <button className="btn btn-primary text-lg">Login</button>
               </div>
               <span className="text-center mt-2">
-                Have an account? Please <Link className="btn btn-success btn-sm" to="/register">Register</Link>
+                Have an account? Please <Link className="text-lg text-[#3F00E7]" to="/register">Register</Link>
               </span>
               <p>OR</p>
             </form>

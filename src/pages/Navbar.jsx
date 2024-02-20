@@ -1,24 +1,45 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../components/Authprovider/Authprovider";
+
 const Navbar = () => {
   // javascript lekhar jaiga
-  const navLinks =
+
+  const { user } = useContext(AuthContext);
+  // navLinks.json file er kaj
+// const [nav,setnav] = useState([])
+
+// useEffect(() => {
+// fetch('/navlink.json')
+// .then(res => res.json())
+// .then(data => console.log(data))
+// },[])
+
+  const navLinks = (
     <div className="text-lg text-center flex gap-10 font-semibold">
       <li>
         <NavLink
           to="/home"
           className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "text-violet-700 scale-125 duration-700 ease-in-out border-y-2" : ""
+            isPending
+              ? "pending"
+              : isActive
+              ? "text-violet-700 scale-125 duration-700 ease-in-out border-y-2"
+              : ""
           }
         >
-         Home
+          Home
         </NavLink>
       </li>
       <li>
         <NavLink
           to="/about"
           className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "text-violet-700 scale-125 duration-700 ease-in-out border-y-2" : ""
+            isPending
+              ? "pending"
+              : isActive
+              ? "text-violet-700 scale-125 duration-700 ease-in-out border-y-2"
+              : ""
           }
         >
           About
@@ -26,9 +47,13 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          to="/blog"
+          to="/login"
           className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "text-violet-700 scale-125 duration-700 ease-in-out border-y-2" : ""
+            isPending
+              ? "pending"
+              : isActive
+              ? "text-violet-700 scale-125 duration-700 ease-in-out border-y-2"
+              : ""
           }
         >
           Blog
@@ -38,14 +63,19 @@ const Navbar = () => {
         <NavLink
           to="/service"
           className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "text-violet-700 scale-125 duration-700 ease-in-out border-y-2" : ""
+            isPending
+              ? "pending"
+              : isActive
+              ? "text-violet-700 scale-125 duration-700 ease-in-out border-y-2"
+              : ""
           }
         >
           Service
         </NavLink>
       </li>
     </div>
- 
+  );
+
   return (
     <div className="">
       <div className="navbar bg-black text-white">
@@ -81,8 +111,7 @@ const Navbar = () => {
         </div>
 
         <div className="navbar navbar-end pr-16">
-          
-        <li>
+          {/* <li>
         <NavLink
           to="/login"
           className={({ isActive, isPending }) =>
@@ -91,8 +120,42 @@ const Navbar = () => {
         >
           <button className="btn btn-success w-20 text-white ">Login</button>
         </NavLink>
-      </li>
-          
+      </li> */}
+
+          {/* profile  */}
+          <div className="dropdown dropdown-end">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn btn-ghost btn-circle avatar"
+            >
+              <div className="w-12 rounded-full">
+                <img alt="Habib" src={user?.photoURL} />
+              </div>
+            </div>
+            <ul
+              tabIndex={0}
+              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 text-black"
+            >
+              <li>
+                <Link className="justify-between text-xl text-green-500">
+                  {user?.displayName}
+                </Link>
+              </li>
+              <li>
+                <Link to="/profile" className="justify-between">
+                  Profile
+                  <span className="badge">New</span>
+                </Link>
+              </li>
+              <li>
+                <a>Settings</a>
+              </li>
+              <li>
+                <a>Logout</a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>

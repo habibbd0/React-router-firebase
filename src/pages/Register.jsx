@@ -1,56 +1,70 @@
-import { Link } from "react-router-dom";
-import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import { Link, useNavigate } from "react-router-dom";
+import { createUserWithEmailAndPassword, getAuth, updateProfile } from "firebase/auth";
 import app from "../../firebase.Config";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { IoIosEye } from "react-icons/io";
 import { IoIosEyeOff } from "react-icons/io";
+import { AuthContext } from "../components/Authprovider/Authprovider";
 const Register = () => {
   const auth = getAuth(app);
 
-  const [error,setError] = useState('');
-  const [success,setsuccess] = useState('');
-  const [showPassword,setShowPassword] = useState(false)
-  const HandleRegisterAccount = (event) => {
-    event.preventDefault();
+  const {createUser} = useContext(AuthContext)
+  const navigate = useNavigate()
 
+  const [error, setError] = useState("");
+  const [success, setsuccess] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const HandleRegisterAccount = event => {
+    event.preventDefault();
 
     // const name = event.target.name.value;
     const form = event.target;
-    // const name = form.name.value;
-    // const photourl = form.photourl.value;
+    const name = form.name.value;
+    const photourl = form.photourl.value;
     const email = form.email.value;
     const password = form.password.value;
+    // console.log(name,photourl,email,password);
 
-    setError("");
-    if(password.length < 6) {
+    createUser(email,password)
+    .then(result => {
+      console.log(result.user);
+      updateProfile(result.user,{
+        displayName : name,
+        photoURL : photourl,
+      })
+      navigate('/profile')
+    }).catch(error => {
+      console.log(error.message);
+    })
+
+    // setError("");
+    if (password.length < 6) {
       setError("please enter a valid password with at last 6 characters.");
-      return
+      return;
     } else if (!/[A-Z]/.test(password)) {
-      return setError('password must be one uppercase letter')
+      return setError("password must be one uppercase letter");
     } else if (!/[1-9]/.test(password)) {
-      return setError('password must be one number letter')
+      return setError("password must be one number letter");
     } else if (!/[@,#,$,&,!]/.test(password)) {
-      return setError('password must be one special characters => @,#,$,&,!')
+      return setError("password must be one special characters => @,#,$,&,!");
     }
 
     createUserWithEmailAndPassword(auth, email, password)
-    .then(result => {
-      console.log(result.user);
-      setsuccess('Seccessful Register')
-    }).catch((error) => {
-      setError(error.message)
-    })
-   
-    
-  // form.reset();
+      .then((result) => {
+        console.log(result.user);
+        setsuccess("Seccessful Register");
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
 
-    // console.log(name,photourl,email,password);
+    // form.reset();
+
   };
 
   const handlePassword = () => {
-    setShowPassword(!showPassword)
-  }
-
+    setShowPassword(!showPassword);
+  };
 
   return (
     <div>
@@ -58,7 +72,13 @@ const Register = () => {
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="card w-full max-w-2xl shadow-2xl mt-10">
             <form onSubmit={HandleRegisterAccount} className="card-body">
-              <p className={`${error ? "text-red-500" : "text-green-500 text-xl"} text-center`}>{error ? error : success}</p>
+              <p
+                className={`${
+                  error ? "text-red-500" : "text-green-500 text-xl"
+                } text-center`}
+              >
+                {error ? error : success}
+              </p>
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Name</span>
@@ -98,30 +118,34 @@ const Register = () => {
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Password</span>
-                  
                 </label>
-               
-               <div className="relative">
-               <input
-                  type={showPassword ? 'text' : 'password'}
-                  placeholder="password"
-                  className="input input-bordered w-[100%]"
-                  required
-                  name="password"
-                  
-                />
-                <div className="absolute inset-y-0 right-0 pr-4 flex items-center leading-10">
-                 {showPassword ? (
-                  <span onClick={handlePassword} className="text-black z-10 text-2xl">
-                    <IoIosEye />
-                  </span>
-                 ) : (
-                  <span onClick={handlePassword} className="text-black z-10 text-2xl">
-                    <IoIosEyeOff />
-                  </span>
-                 )}
+
+                <div className="relative">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    placeholder="password"
+                    className="input input-bordered w-[100%]"
+                    required
+                    name="password"
+                  />
+                  <div className="absolute inset-y-0 right-0 pr-4 flex items-center leading-10">
+                    {showPassword ? (
+                      <span
+                        onClick={handlePassword}
+                        className="text-black z-10 text-2xl"
+                      >
+                        <IoIosEye />
+                      </span>
+                    ) : (
+                      <span
+                        onClick={handlePassword}
+                        className="text-black z-10 text-2xl"
+                      >
+                        <IoIosEyeOff />
+                      </span>
+                    )}
+                  </div>
                 </div>
-               </div>
                 <label className="label">
                   <a href="#" className="label-text-alt link link-hover">
                     Forgot password?
@@ -133,8 +157,8 @@ const Register = () => {
                   Register
                 </button>
                 <span className="text-center mt-2">
-                  Have an account? Please{" "}
-                  <Link className="btn btn-success btn-sm" to="/login">
+                  Have an account? Please  
+                  <Link className="text-lg text-[#3F00E7] ml-2" to="/login"> 
                     Login
                   </Link>
                 </span>
