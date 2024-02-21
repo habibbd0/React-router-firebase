@@ -1,11 +1,11 @@
-import React, { useContext, useEffect, useState } from "react";
+// import React, { useEfect,} from "react";
 import { Link, NavLink, useNavigate,  } from "react-router-dom";
-import { AuthContext } from "../components/Authprovider/Authprovider";
+import AuthInfo from "../components/Authprovider/Custom Hook/AuthInfo";
 
 const Navbar = () => {
   // javascript lekhar jaiga
 
-  const { user,logOutUser } = useContext(AuthContext);
+  const { user,logOutUser } = AuthInfo();
   const navigate = useNavigate()
 
   const HandleLogOut = () => {
@@ -153,7 +153,7 @@ const Navbar = () => {
                 <a>Settings</a>
               </li>
               <li>
-                <a onClick={HandleLogOut}>Logout</a>
+                <Link onClick={HandleLogOut}>Logout</Link>
               </li>
             </ul>
           </div> :  <li>

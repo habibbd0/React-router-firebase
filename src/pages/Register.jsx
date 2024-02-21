@@ -1,14 +1,15 @@
 import { Link, useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword, getAuth, updateProfile } from "firebase/auth";
 import app from "../../firebase.Config";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { IoIosEye } from "react-icons/io";
 import { IoIosEyeOff } from "react-icons/io";
-import { AuthContext } from "../components/Authprovider/Authprovider";
+import AuthInfo from "../components/Authprovider/Custom Hook/AuthInfo";
+
 const Register = () => {
   const auth = getAuth(app);
 
-  const {createUser} = useContext(AuthContext)
+  const {createUser} = AuthInfo()
   const navigate = useNavigate()
 
   const [error, setError] = useState("");

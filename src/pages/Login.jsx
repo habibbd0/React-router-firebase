@@ -5,10 +5,9 @@ import { FaGoogle } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
 import { FaGithub } from "react-icons/fa";
 import { Link, useNavigate, } from "react-router-dom";
-import { useContext } from "react";
-import { AuthContext } from "../components/Authprovider/Authprovider";
+import AuthInfo from "../components/Authprovider/Custom Hook/AuthInfo";
 const Login = () => {
-  const { loginUser } = useContext(AuthContext);
+  const { loginUser } = AuthInfo();
   const navigate = useNavigate()
 
 

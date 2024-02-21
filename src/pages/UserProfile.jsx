@@ -1,9 +1,9 @@
-import { useContext } from "react";
-import { AuthContext } from "../components/Authprovider/Authprovider";
+import AuthInfo from "../components/Authprovider/Custom Hook/AuthInfo";
+
 
 
 const UserProfile = () => {
-	const {user} = useContext(AuthContext)
+	const {user} = AuthInfo()
 	return (
 		<div className="max-w-3xl mx-auto text-center my-10">
 			<h1 className="text-4xl font-bold">User Profile Info</h1>
