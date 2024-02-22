@@ -5,9 +5,13 @@ import { FaGoogle } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
 import { FaGithub } from "react-icons/fa";
 import { Link, useNavigate, } from "react-router-dom";
+import { useState } from "react";
+import { IoIosEyeOff } from "react-icons/io";
+import { IoIosEye } from "react-icons/io";
 import AuthInfo from "../components/Authprovider/Custom Hook/AuthInfo";
 const Login = () => {
   const { loginUser } = AuthInfo();
+  const [showPassword, setShowPassword] = useState(true);
   const navigate = useNavigate()
 
 
@@ -39,18 +43,19 @@ const Login = () => {
       });
   };
 
+  const handlePassword = () => {
+    setShowPassword(!showPassword)
+  }
+
   return (
-    <div className="max-w-4xl text-center mx-auto border border-violet-500 p-8 my-12">
-      <h1 className="text-violet-700 text-2xl font-semibold underline">
+    <div className="">
+      <h1 className="text-violet-700 text-4xl font-semibold underline text-center mx-auto my-6">
         Login
       </h1>
-      <div className="hero">
-        <div className="hero-content flex gap-10 lg:flex-row-reverse">
-          <div className="text-center w-full max-w-xl mx-auto lg:text-left">
-            <h1 className="text-5xl font-bold">Welcome</h1>
-          </div>
-          <div className="card shrink-0 w-full max-w-md shadow-2xl bg-base-100">
-            <form onSubmit={handleLogin} className="card-body">
+      <div className="hero max-w-4xl mx-auto text-center">
+        <div className="hero-content flex gap-10 lg:flex-row-reverse ">
+          <div className="card w-full max-w-2xl shadow-2xl mt-4">
+            <form onSubmit={handleLogin} className="card-body w-[500px]">
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
@@ -67,13 +72,27 @@ const Login = () => {
                 <label className="label">
                   <span className="label-text">Password</span>
                 </label>
-                <input
-                  type="password"
+
+                <div className="relative">
+                  <input type={showPassword ?"text" : "password"} 
                   placeholder="password"
                   className="input input-bordered w-[100%]"
                   required
                   name="password"
-                />
+                  />
+                   <div className="absolute inset-y-0 right-0 pr-4 flex items-center loading-10">
+                    {showPassword ? (
+                      <span onClick={handlePassword} className="text-black text-2xl z-10">
+                       <IoIosEye />
+                      </span>
+                    ) : (
+                      <span onClick={handlePassword} className="text-black z-10 text-2xl">
+                           <IoIosEyeOff />
+                      </span>
+                    )}
+                   </div>
+                </div>
+
                 <label className="label">
                   <a href="#" className="label-text-alt link link-hover">
                     Forgot password?
