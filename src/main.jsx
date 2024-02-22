@@ -15,6 +15,7 @@ import Register from "./pages/Register.jsx";
 import Authprovider from "./components/Authprovider/Authprovider.jsx";
 import UserProfile from "./pages/UserProfile.jsx";
 import Blog from "./pages/Blog.jsx";
+import Dashboard from "./pages/Dashboard.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
       {
         path : '/profile',
         element : <UserProfile></UserProfile>
+      },
+      {
+        path : '/dashboard',
+        element : <Dashboard></Dashboard>
       }
     ]
   },
