@@ -9,54 +9,50 @@ import Home from "./pages/Home.jsx";
 import Root from "./Root/Root.jsx";
 import App from "./App.jsx";
 import About from "./pages/About.jsx";
-import Service from "./pages/Service.jsx";
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
 import Authprovider from "./components/Authprovider/Authprovider.jsx";
 import UserProfile from "./pages/UserProfile.jsx";
 import Blog from "./pages/Blog.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
+import PrivateRoute from "./components/Router/PrivateRoute.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root></Root>,
-    errorElement: <ErrorElement></ErrorElement>,
+    element: <Root/>,
+    errorElement: <ErrorElement/>,
     children: [
       {
         path: '/',
-        element: <App></App>
+        element: <App/>
       },
       {
         path: '/home',
-        element: <Home></Home>
+        element: <Home/>
       },
       {
         path: '/blog',
-        element:<Blog></Blog>
+        element:<Blog/>
       },
       {
         path: '/about',
-        element: <About></About>
-      },
-      {
-        path: '/service',
-        element: <Service></Service>
+        element: <About/>
       },
       {
         path: '/login',
-        element: <Login></Login>
+        element: <Login/>
       }, 
       {
         path : '/register',
-        element : <Register></Register>
+        element : <Register/>
       },
       {
         path : '/profile',
-        element : <UserProfile></UserProfile>
+        element : <PrivateRoute><UserProfile/></PrivateRoute>
       },
       {
         path : '/dashboard',
-        element : <Dashboard></Dashboard>
+        element : <PrivateRoute><Dashboard/></PrivateRoute>
       }
     ]
   },

@@ -8,7 +8,7 @@ import { Link, useNavigate, } from "react-router-dom";
 import { useState } from "react";
 import { IoIosEyeOff } from "react-icons/io";
 import { IoIosEye } from "react-icons/io";
-import AuthInfo from "../components/Authprovider/Custom Hook/AuthInfo";
+import AuthInfo from "../components/Custom Hook/AuthInfo";
 const Login = () => {
   const { loginUser } = AuthInfo();
   const [showPassword, setShowPassword] = useState(true);

@@ -1,9 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import HomeImage from '../image/Habib2.png'
-import { AuthContext } from '../components/Authprovider/Authprovider';
+import AuthInfo from '../components/Custom Hook/AuthInfo';
+
 
 const Home = () => {
-	const {name,age} = useContext(AuthContext)
+	const {name,age} = AuthInfo()
 	return (
 		<div>
 			<img className="w-screen h-screen " src={HomeImage} alt="" />

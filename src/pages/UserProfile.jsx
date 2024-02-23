@@ -1,6 +1,4 @@
-import AuthInfo from "../components/Authprovider/Custom Hook/AuthInfo";
-
-
+import AuthInfo from "../components/Custom Hook/AuthInfo";
 
 const UserProfile = () => {
 	const {user} = AuthInfo()

@@ -4,7 +4,8 @@ import app from "../../firebase.Config";
 import { useState } from "react";
 import { IoIosEye } from "react-icons/io";
 import { IoIosEyeOff } from "react-icons/io";
-import AuthInfo from "../components/Authprovider/Custom Hook/AuthInfo";
+import AuthInfo from "../components/Custom Hook/AuthInfo";
+
 
 const Register = () => {
   const auth = getAuth(app);

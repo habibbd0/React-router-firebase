@@ -1,6 +1,7 @@
 // import React, { useEfect,} from "react";
 import { Link, NavLink, useNavigate,  } from "react-router-dom";
-import AuthInfo from "../components/Authprovider/Custom Hook/AuthInfo";
+import AuthInfo from "../components/Custom Hook/AuthInfo";
+
 
 const Navbar = () => {
   // javascript lekhar jaiga
@@ -85,20 +86,22 @@ const Navbar = () => {
           Dashboard
         </NavLink>
       </li>
-      <li>
-        <NavLink
-          to="/service"
-          className={({ isActive, isPending }) =>
-            isPending
-              ? "pending"
-              : isActive
-              ? "text-violet-700 scale-125 duration-700 ease-in-out border-y-2"
-              : ""
-          }
-        >
-          Service
-        </NavLink>
-      </li>
+     {
+      user &&  <li>
+      <NavLink
+        to="/Profile"
+        className={({ isActive, isPending }) =>
+          isPending
+            ? "pending"
+            : isActive
+            ? "text-violet-700 scale-125 duration-700 ease-in-out border-y-2"
+            : ""
+        }
+      >
+       Profile
+      </NavLink>
+    </li>
+     }
     </div>
   );
 

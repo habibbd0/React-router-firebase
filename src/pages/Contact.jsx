@@ -1,6 +1,7 @@
-import ServiceImage from '../image/service.avif'
+// import ServiceImage from '../image/service.avif'
+import ContactImage from '../image/service.avif'
 
-const Service = () => {
+const Contact = () => {
 	return (
 		<div>
 			<div>
@@ -32,10 +33,10 @@ const Service = () => {
   </div>
 </div>
 			</div>
-			<img className='w-full h-[400px]' src={ServiceImage} alt="" />
+			<img className='w-full h-[400px]' src={ContactImage} alt="" />
 			<h1 className="text-4xl font-bold text-center">This is service page</h1>
 		</div>
 	);
 };
 
-export default Service;
+export default Contact;
